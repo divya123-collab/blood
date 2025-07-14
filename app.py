@@ -109,7 +109,8 @@ def predict():
 
         result = stage_map.get(prediction_num, "Unknown")
 
-        return render_template('result.html', prediction=result)
+        # Use redirect with URL parameters to avoid POST-redirect-GET issues
+        return redirect(f'/result?prediction={result}')
         
     except ValueError as e:
         return render_template('index.html', error="Please fill in all fields with valid values.")
@@ -119,5 +120,10 @@ def predict():
         print(f"Prediction error: {e}")
         return render_template('index.html', error="An error occurred while processing your request. Please try again.")
 
+@app.route('/result')
+def result():
+    """Display prediction result"""
+    prediction = request.args.get('prediction', 'Unknown')
+    return render_template('result.html', prediction=prediction)
 if __name__ == '__main__':
     app.run(debug=True)
