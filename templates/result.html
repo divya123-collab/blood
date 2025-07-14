@@ -1,11 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Prediction Result</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result - Predictive Pulse</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>Prediction Result</h2>
-    <p>Your predicted blood pressure stage is: <strong>{{ prediction }}</strong></p>
-    <a href="/">Predict Again</a>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">PP</div>
+                    Predictive Pulse
+                </a>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/details" class="nav-link">About</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="card fade-in-up">
+                <div class="card-content">
+                    <div class="result-card">
+                        <div class="result-icon result-{{ prediction.lower().replace(' ', '-') }}">
+                            {% if prediction == "Normal" %}
+                                ✓
+                            {% elif prediction == "Elevated" %}
+                                ⚠
+                            {% elif "Stage 1" in prediction %}
+                                !
+                            {% elif "Stage 2" in prediction %}
+                                !!
+                            {% else %}
+                                🚨
+                            {% endif %}
+                        </div>
+                        
+                        <h1 class="result-title">{{ prediction }}</h1>
+                        
+                        <div class="result-description">
+                            {% if prediction == "Normal" %}
+                                Your blood pressure is within the normal range. This is excellent for your cardiovascular health.
+                            {% elif prediction == "Elevated" %}
+                                Your blood pressure is elevated. While not yet hypertensive, this indicates increased risk.
+                            {% elif "Stage 1" in prediction %}
+                                You have Stage 1 Hypertension. This requires attention and likely lifestyle modifications.
+                            {% elif "Stage 2" in prediction %}
+                                You have Stage 2 Hypertension. This is a serious condition requiring immediate medical attention.
+                            {% else %}
+                                This indicates a Hypertensive Crisis. Seek emergency medical care immediately.
+                            {% endif %}
+                        </div>
+
+                        <div class="result-recommendations">
+                            <h4>Recommended Actions:</h4>
+                            <ul>
+                                {% if prediction == "Normal" %}
+                                    <li>Maintain a healthy diet rich in fruits and vegetables</li>
+                                    <li>Exercise regularly (at least 150 minutes per week)</li>
+                                    <li>Limit sodium intake to less than 2,300mg per day</li>
+                                    <li>Monitor blood pressure annually</li>
+                                {% elif prediction == "Elevated" %}
+                                    <li>Adopt heart-healthy lifestyle changes</li>
+                                    <li>Reduce sodium intake significantly</li>
+                                    <li>Increase physical activity</li>
+                                    <li>Monitor blood pressure every 3-6 months</li>
+                                {% elif "Stage 1" in prediction %}
+                                    <li>Consult with healthcare provider about treatment options</li>
+                                    <li>Consider medication if lifestyle changes are insufficient</li>
+                                    <li>Monitor blood pressure monthly</li>
+                                    <li>Implement stress management techniques</li>
+                                {% elif "Stage 2" in prediction %}
+                                    <li>Seek immediate medical attention</li>
+                                    <li>Likely need combination of medications</li>
+                                    <li>Monitor blood pressure weekly</li>
+                                    <li>Make comprehensive lifestyle changes</li>
+                                {% else %}
+                                    <li>Seek emergency medical care immediately</li>
+                                    <li>Do not delay treatment</li>
+                                    <li>May require hospitalization</li>
+                                    <li>Follow strict medical supervision</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+
+                        <div class="result-actions" style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                            <a href="/" class="btn btn-primary">New Prediction</a>
+                            <a href="/details" class="btn btn-secondary">Learn More</a>
+                        </div>
+
+                        <div style="margin-top: 2rem; padding: 1.5rem; background: var(--secondary-50); border-radius: var(--radius-lg); border-left: 4px solid var(--warning-500);">
+                            <p style="margin: 0; font-size: 0.875rem; color: var(--secondary-600); line-height: 1.5;">
+                                <strong>Disclaimer:</strong> This prediction is for informational purposes only and should not replace professional medical advice. 
+                                Always consult with a qualified healthcare provider for proper diagnosis and treatment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

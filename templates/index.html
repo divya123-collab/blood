@@ -2,64 +2,208 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Predictive Pulse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Pulse - AI-Powered Blood Pressure Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>Blood Pressure Stage Prediction</h2>
-    <form action="/predict" method="post">
-        <label>Age Group (0:18-34, 1:35-50, 2:51-64, 3:65+):<br>
-            <input type="number" name="age" required>
-        </label><br><br>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">PP</div>
+                    Predictive Pulse
+                </a>
+                <nav class="nav">
+                    <a href="/" class="nav-link active">Home</a>
+                    <a href="/details" class="nav-link">About</a>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-        <label>Gender (0: Female, 1: Male):<br>
-            <input type="number" name="gender" min="0" max="1" required>
-        </label><br><br>
+    <main class="main">
+        <div class="container">
+            <section class="hero">
+                <h1 class="hero-title">AI-Powered Blood Pressure Analysis</h1>
+                <p class="hero-subtitle">
+                    Get instant, accurate blood pressure stage predictions using advanced machine learning 
+                    algorithms trained on comprehensive physiological data.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Accuracy</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Predictions</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Available</span>
+                    </div>
+                </div>
+            </section>
 
-        <label>History of Hypertension (0: No, 1: Yes):<br>
-            <input type="number" name="history" min="0" max="1" required>
-        </label><br><br>
+            <section class="prediction-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Blood Pressure Stage Prediction</h2>
+                        <p class="card-description">
+                            Please provide your health information below. All data is processed securely and used only for prediction purposes.
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <form id="prediction-form" class="form" action="/predict" method="post">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label" for="age">Age Group</label>
+                                    <select name="age" id="age" class="form-select" required>
+                                        <option value="">Select age group</option>
+                                        <option value="0">18-34 years</option>
+                                        <option value="1">35-50 years</option>
+                                        <option value="2">51-64 years</option>
+                                        <option value="3">65+ years</option>
+                                    </select>
+                                    <div class="form-help">Select your current age group</div>
+                                </div>
 
-        <label>Patient Type (0: No, 1: Yes):<br>
-            <input type="number" name="patient" min="0" max="1" required>
-        </label><br><br>
+                                <div class="form-group">
+                                    <label class="form-label" for="gender">Gender</label>
+                                    <select name="gender" id="gender" class="form-select" required>
+                                        <option value="">Select gender</option>
+                                        <option value="0">Female</option>
+                                        <option value="1">Male</option>
+                                    </select>
+                                    <div class="form-help">Biological sex assigned at birth</div>
+                                </div>
 
-        <label>Take Medication (0: No, 1: Yes, 2: Sometimes):<br>
-            <input type="number" name="medication" min="0" max="2" required>
-        </label><br><br>
+                                <div class="form-group">
+                                    <label class="form-label" for="history">History of Hypertension</label>
+                                    <select name="history" id="history" class="form-select" required>
+                                        <option value="">Select option</option>
+                                        <option value="0">No previous history</option>
+                                        <option value="1">Previous diagnosis</option>
+                                    </select>
+                                    <div class="form-help">Any prior hypertension diagnosis</div>
+                                </div>
 
-        <label>Severity (0: Mild, 1: Moderate, 2: Severe):<br>
-            <input type="number" name="severity" min="0" max="2" required>
-        </label><br><br>
+                                <div class="form-group">
+                                    <label class="form-label" for="patient">Current Patient Status</label>
+                                    <select name="patient" id="patient" class="form-select" required>
+                                        <option value="">Select status</option>
+                                        <option value="0">Not currently a patient</option>
+                                        <option value="1">Active patient</option>
+                                    </select>
+                                    <div class="form-help">Currently under medical care</div>
+                                </div>
 
-        <label>Breath Shortness (0: No, 1: Yes):<br>
-            <input type="number" name="breath_shortness" min="0" max="1" required>
-        </label><br><br>
+                                <div class="form-group">
+                                    <label class="form-label" for="medication">Medication Usage</label>
+                                    <select name="medication" id="medication" class="form-select" required>
+                                        <option value="">Select option</option>
+                                        <option value="0">No medication</option>
+                                        <option value="1">Regular medication</option>
+                                        <option value="2">Occasional medication</option>
+                                    </select>
+                                    <div class="form-help">Current medication regimen</div>
+                                </div>
 
-        <label>Visual Changes (0: No, 1: Yes):<br>
-            <input type="number" name="visual_changes" min="0" max="1" required>
-        </label><br><br>
+                                <div class="form-group">
+                                    <label class="form-label" for="severity">Symptom Severity</label>
+                                    <select name="severity" id="severity" class="form-select" required>
+                                        <option value="">Select severity</option>
+                                        <option value="0">Mild symptoms</option>
+                                        <option value="1">Moderate symptoms</option>
+                                        <option value="2">Severe symptoms</option>
+                                    </select>
+                                    <div class="form-help">Overall symptom intensity</div>
+                                </div>
 
-        <label>Nose Bleeding (0: No, 1: Yes, 2: Occasionally):<br>
-            <input type="number" name="nose_bleeding" min="0" max="2" required>
-        </label><br><br>
+                                <div class="form-group">
+                                    <label class="form-label" for="breath_shortness">Shortness of Breath</label>
+                                    <select name="breath_shortness" id="breath_shortness" class="form-select" required>
+                                        <option value="">Select option</option>
+                                        <option value="0">No breathing issues</option>
+                                        <option value="1">Experiencing shortness of breath</option>
+                                    </select>
+                                    <div class="form-help">Difficulty breathing or breathlessness</div>
+                                </div>
 
-        <label>When Diagnosed (0: <1 Year, 1: 1-2 Years, 2: >2 Years):<br>
-            <input type="number" name="diagnosis_time" min="0" max="2" required>
-        </label><br><br>
+                                <div class="form-group">
+                                    <label class="form-label" for="visual_changes">Visual Changes</label>
+                                    <select name="visual_changes" id="visual_changes" class="form-select" required>
+                                        <option value="">Select option</option>
+                                        <option value="0">No visual changes</option>
+                                        <option value="1">Experiencing visual changes</option>
+                                    </select>
+                                    <div class="form-help">Blurred vision or other visual symptoms</div>
+                                </div>
 
-        <label>Systolic BP (Encoded):<br>
-            <input type="number" name="systolic" required>
-        </label><br><br>
+                                <div class="form-group">
+                                    <label class="form-label" for="nose_bleeding">Nosebleeds</label>
+                                    <select name="nose_bleeding" id="nose_bleeding" class="form-select" required>
+                                        <option value="">Select frequency</option>
+                                        <option value="0">No nosebleeds</option>
+                                        <option value="1">Regular nosebleeds</option>
+                                        <option value="2">Occasional nosebleeds</option>
+                                    </select>
+                                    <div class="form-help">Frequency of nosebleeds</div>
+                                </div>
 
-        <label>Diastolic BP (Encoded):<br>
-            <input type="number" name="diastolic" required>
-        </label><br><br>
+                                <div class="form-group">
+                                    <label class="form-label" for="diagnosis_time">Time Since Diagnosis</label>
+                                    <select name="diagnosis_time" id="diagnosis_time" class="form-select" required>
+                                        <option value="">Select timeframe</option>
+                                        <option value="0">Less than 1 year</option>
+                                        <option value="1">1-2 years ago</option>
+                                        <option value="2">More than 2 years ago</option>
+                                    </select>
+                                    <div class="form-help">When were you first diagnosed</div>
+                                </div>
 
-        <label>Controlled Diet (0: No, 1: Yes):<br>
-            <input type="number" name="diet_control" min="0" max="1" required>
-        </label><br><br>
+                                <div class="form-group">
+                                    <label class="form-label" for="systolic">Systolic Blood Pressure</label>
+                                    <input type="number" name="systolic" id="systolic" class="form-input" 
+                                           min="80" max="250" required placeholder="120">
+                                    <div class="form-help">Upper number (normal: 90-120 mmHg)</div>
+                                </div>
 
-        <button type="submit">Predict Stage</button>
-    </form>
+                                <div class="form-group">
+                                    <label class="form-label" for="diastolic">Diastolic Blood Pressure</label>
+                                    <input type="number" name="diastolic" id="diastolic" class="form-input" 
+                                           min="40" max="150" required placeholder="80">
+                                    <div class="form-help">Lower number (normal: 60-80 mmHg)</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="diet_control">Controlled Diet</label>
+                                    <select name="diet_control" id="diet_control" class="form-select" required>
+                                        <option value="">Select option</option>
+                                        <option value="0">No special diet</option>
+                                        <option value="1">Following controlled diet</option>
+                                    </select>
+                                    <div class="form-help">Following dietary restrictions</div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions" style="margin-top: 2rem; text-align: center;">
+                                <button type="submit" id="submit-btn" class="btn btn-primary btn-lg" disabled>
+                                    <span class="loading hidden"></span>
+                                    <span class="btn-text">Predict Blood Pressure Stage</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

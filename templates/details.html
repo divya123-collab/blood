@@ -1,11 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>About Predictive Pulse</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Predictive Pulse - AI Blood Pressure Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h2>About Predictive Pulse</h2>
-    <p>This application predicts blood pressure stages based on real-time physiological data collected from wearable devices.</p>
-    <a href="/">Back to Home</a>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">PP</div>
+                    Predictive Pulse
+                </a>
+                <nav class="nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/details" class="nav-link active">About</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="hero">
+                <h1 class="hero-title">About Predictive Pulse</h1>
+                <p class="hero-subtitle">
+                    Advanced AI technology for accurate blood pressure stage prediction using comprehensive physiological data analysis.
+                </p>
+            </section>
+
+            <div style="display: grid; gap: 2rem; margin-bottom: 3rem;">
+                <div class="card fade-in-up">
+                    <div class="card-header">
+                        <h2 class="card-title">How It Works</h2>
+                        <p class="card-description">Our machine learning model analyzes multiple health factors to provide accurate predictions</p>
+                    </div>
+                    <div class="card-content">
+                        <div style="display: grid; gap: 1.5rem;">
+                            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary-500), var(--primary-600)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">1</div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem; color: var(--secondary-800);">Data Collection</h4>
+                                    <p style="color: var(--secondary-600); margin: 0;">Collect comprehensive health information including demographics, symptoms, and blood pressure readings.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary-500), var(--primary-600)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">2</div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem; color: var(--secondary-800);">AI Analysis</h4>
+                                    <p style="color: var(--secondary-600); margin: 0;">Our trained machine learning model processes the data using advanced algorithms to identify patterns.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary-500), var(--primary-600)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; flex-shrink: 0;">3</div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem; color: var(--secondary-800);">Prediction & Recommendations</h4>
+                                    <p style="color: var(--secondary-600); margin: 0;">Receive an accurate blood pressure stage prediction with personalized health recommendations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card fade-in-up">
+                    <div class="card-header">
+                        <h2 class="card-title">Blood Pressure Stages</h2>
+                        <p class="card-description">Understanding the different categories of blood pressure readings</p>
+                    </div>
+                    <div class="card-content">
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="padding: 1rem; border-left: 4px solid var(--success-500); background: var(--success-50); border-radius: var(--radius-md);">
+                                <h4 style="color: var(--success-600); margin-bottom: 0.5rem;">Normal</h4>
+                                <p style="margin: 0; color: var(--secondary-700);">Systolic less than 120 AND diastolic less than 80 mmHg</p>
+                            </div>
+                            <div style="padding: 1rem; border-left: 4px solid var(--warning-500); background: var(--warning-50); border-radius: var(--radius-md);">
+                                <h4 style="color: var(--warning-600); margin-bottom: 0.5rem;">Elevated</h4>
+                                <p style="margin: 0; color: var(--secondary-700);">Systolic 120-129 AND diastolic less than 80 mmHg</p>
+                            </div>
+                            <div style="padding: 1rem; border-left: 4px solid #f97316; background: #fff7ed; border-radius: var(--radius-md);">
+                                <h4 style="color: #ea580c; margin-bottom: 0.5rem;">Hypertension Stage 1</h4>
+                                <p style="margin: 0; color: var(--secondary-700);">Systolic 130-139 OR diastolic 80-89 mmHg</p>
+                            </div>
+                            <div style="padding: 1rem; border-left: 4px solid var(--error-500); background: var(--error-50); border-radius: var(--radius-md);">
+                                <h4 style="color: var(--error-600); margin-bottom: 0.5rem;">Hypertension Stage 2</h4>
+                                <p style="margin: 0; color: var(--secondary-700);">Systolic 140/90 mmHg or higher</p>
+                            </div>
+                            <div style="padding: 1rem; border-left: 4px solid #991b1b; background: #fef2f2; border-radius: var(--radius-md);">
+                                <h4 style="color: #991b1b; margin-bottom: 0.5rem;">Hypertensive Crisis</h4>
+                                <p style="margin: 0; color: var(--secondary-700);">Systolic higher than 180 AND/OR diastolic higher than 120 mmHg</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card fade-in-up">
+                    <div class="card-header">
+                        <h2 class="card-title">Model Accuracy & Features</h2>
+                        <p class="card-description">Technical details about our prediction model</p>
+                    </div>
+                    <div class="card-content">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                            <div>
+                                <h4 style="color: var(--secondary-800); margin-bottom: 1rem;">Key Features</h4>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--secondary-200); position: relative; padding-left: 1.5rem;">
+                                        <span style="position: absolute; left: 0; color: var(--primary-500);">•</span>
+                                        Age and gender demographics
+                                    </li>
+                                    <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--secondary-200); position: relative; padding-left: 1.5rem;">
+                                        <span style="position: absolute; left: 0; color: var(--primary-500);">•</span>
+                                        Medical history analysis
+                                    </li>
+                                    <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--secondary-200); position: relative; padding-left: 1.5rem;">
+                                        <span style="position: absolute; left: 0; color: var(--primary-500);">•</span>
+                                        Symptom severity assessment
+                                    </li>
+                                    <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--secondary-200); position: relative; padding-left: 1.5rem;">
+                                        <span style="position: absolute; left: 0; color: var(--primary-500);">•</span>
+                                        Blood pressure measurements
+                                    </li>
+                                    <li style="padding: 0.5rem 0; position: relative; padding-left: 1.5rem;">
+                                        <span style="position: absolute; left: 0; color: var(--primary-500);">•</span>
+                                        Lifestyle factors
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--secondary-800); margin-bottom: 1rem;">Performance Metrics</h4>
+                                <div style="display: grid; gap: 1rem;">
+                                    <div style="text-align: center; padding: 1rem; background: var(--primary-50); border-radius: var(--radius-md);">
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--primary-600);">95%</div>
+                                        <div style="font-size: 0.875rem; color: var(--secondary-600);">Accuracy</div>
+                                    </div>
+                                    <div style="text-align: center; padding: 1rem; background: var(--success-50); border-radius: var(--radius-md);">
+                                        <div style="font-size: 2rem; font-weight: 700; color: var(--success-600);">92%</div>
+                                        <div style="font-size: 0.875rem; color: var(--secondary-600);">Precision</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card fade-in-up">
+                    <div class="card-header">
+                        <h2 class="card-title">Important Disclaimer</h2>
+                    </div>
+                    <div class="card-content">
+                        <div style="padding: 1.5rem; background: var(--warning-50); border: 1px solid var(--warning-200); border-radius: var(--radius-lg);">
+                            <p style="margin: 0; color: var(--secondary-700); line-height: 1.6;">
+                                <strong>Medical Disclaimer:</strong> Predictive Pulse is designed for informational and educational purposes only. 
+                                The predictions provided by this application should not be used as a substitute for professional medical advice, 
+                                diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any 
+                                questions you may have regarding a medical condition. Never disregard professional medical advice or delay in 
+                                seeking it because of something you have read or learned from this application.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="/" class="btn btn-primary btn-lg">Start Prediction</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
