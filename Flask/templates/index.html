@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predictive Pulse</title>
+</head>
+<body>
+    <h2>Blood Pressure Stage Prediction</h2>
+    <form action="/predict" method="post">
+        <label>Age Group (0:18-34, 1:35-50, 2:51-64, 3:65+):<br>
+            <input type="number" name="age" required>
+        </label><br><br>
+
+        <label>Gender (0: Female, 1: Male):<br>
+            <input type="number" name="gender" min="0" max="1" required>
+        </label><br><br>
+
+        <label>History of Hypertension (0: No, 1: Yes):<br>
+            <input type="number" name="history" min="0" max="1" required>
+        </label><br><br>
+
+        <label>Patient Type (0: No, 1: Yes):<br>
+            <input type="number" name="patient" min="0" max="1" required>
+        </label><br><br>
+
+        <label>Take Medication (0: No, 1: Yes, 2: Sometimes):<br>
+            <input type="number" name="medication" min="0" max="2" required>
+        </label><br><br>
+
+        <label>Severity (0: Mild, 1: Moderate, 2: Severe):<br>
+            <input type="number" name="severity" min="0" max="2" required>
+        </label><br><br>
+
+        <label>Breath Shortness (0: No, 1: Yes):<br>
+            <input type="number" name="breath_shortness" min="0" max="1" required>
+        </label><br><br>
+
+        <label>Visual Changes (0: No, 1: Yes):<br>
+            <input type="number" name="visual_changes" min="0" max="1" required>
+        </label><br><br>
+
+        <label>Nose Bleeding (0: No, 1: Yes, 2: Occasionally):<br>
+            <input type="number" name="nose_bleeding" min="0" max="2" required>
+        </label><br><br>
+
+        <label>When Diagnosed (0: <1 Year, 1: 1-2 Years, 2: >2 Years):<br>
+            <input type="number" name="diagnosis_time" min="0" max="2" required>
+        </label><br><br>
+
+        <label>Systolic BP (Encoded):<br>
+            <input type="number" name="systolic" required>
+        </label><br><br>
+
+        <label>Diastolic BP (Encoded):<br>
+            <input type="number" name="diastolic" required>
+        </label><br><br>
+
+        <label>Controlled Diet (0: No, 1: Yes):<br>
+            <input type="number" name="diet_control" min="0" max="1" required>
+        </label><br><br>
+
+        <button type="submit">Predict Stage</button>
+    </form>
+</body>
+</html>
