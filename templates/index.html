@@ -56,6 +56,11 @@
                         <p class="card-description">
                             Please provide your health information below. All data is processed securely and used only for prediction purposes.
                         </p>
+                        {% if error %}
+                        <div style="margin: 1rem 0; padding: 1rem; background: var(--error-50); border: 1px solid var(--error-200); border-radius: var(--radius-md); color: var(--error-600);">
+                            <strong>Error:</strong> {{ error }}
+                        </div>
+                        {% endif %}
                     </div>
                     <div class="card-content">
                         <form id="prediction-form" class="form" action="/predict" method="post">
